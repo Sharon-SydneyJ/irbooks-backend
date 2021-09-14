@@ -8,6 +8,7 @@
 
 puts "Clearing old data..."
 Book.destroy_all
+Bookshelf.destroy_all
 
 
 Book.create!(
@@ -17,16 +18,17 @@ description: 'Re-Conditioning Your Mind to start to accept, express and Imagine 
 read: [true, false]})
 
 
-   Book.create!({img_url: 'https://sydneychase.files.wordpress.com/2021/09/books__spiritual_growth.jpg',
+Book.create!(
+    {img_url: 'https://sydneychase.files.wordpress.com/2021/09/books__spiritual_growth.jpg',
 title: 'Spiritual Growth', author: 'Sanya Roman', year_published: '1987', 
 description: 'Spiritual Growth teaches you how to be your Higher Self',
 read: [true, false]}
 )
 
 Book.create!(
-    {img_url: 'https://sydneychase.files.wordpress.com/2021/09/books__spiritual_growth.jpg',
-title: 'Spiritual Growth', author: 'Sanya Roman', year_published: '1987', 
-description: 'Spiritual Growth teaches you how to be your Higher Self',
+    {img_url: 'https://sydneychase.files.wordpress.com/2021/09/9780875168258.jpg',
+title: 'Resurrection', author: 'Neville Goddard', year_published: '1966', 
+description: 'Feeling is the Secret. Chankging your thoughts and your imagination can indeed change your reality!',
 read: [true, false]}
 )
 
@@ -37,6 +39,14 @@ description: '.The Celestine Prophecy contains secrets that are currently changi
 read: [true, false]}
 )
 
-puts "Books & Et all seeded"
+Bookshelf.create!(
+    {name: 'The Indigo Room Bookshelf', description: 'Here you can find a list of books we have either read or reccommended on the show.' })
+Bookshelf.create!(
+    {name: 'Sydney Chase Bookshelf', description: 'I love my books. I love sharing great books that I have read with others. Listed are some of my favorites. Will be adding more.' })
+Bookshelf.create!(
+    {name: 'Random', description: 'Random books I like.' })
+    
+
+puts "Books, Bookshelf & Et all seeded"
 
 puts "Seeded"

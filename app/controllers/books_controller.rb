@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
     
-    # GET /birds
+    # GET /books
   def index
     books = Book.all
     render json: books
