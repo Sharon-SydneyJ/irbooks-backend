@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_14_221259) do
+ActiveRecord::Schema.define(version: 2021_09_15_040903) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,11 +26,36 @@ ActiveRecord::Schema.define(version: 2021_09_14_221259) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "bookshelf_books", force: :cascade do |t|
+    t.bigint "bookshelf_id", null: false
+    t.bigint "book_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_id"], name: "index_bookshelf_books_on_book_id"
+    t.index ["bookshelf_id"], name: "index_bookshelf_books_on_bookshelf_id"
+  end
+
   create_table "bookshelves", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_bookshelves_on_user_id"
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "user_name"
+    t.string "email"
+    t.string "password_digest"
+    t.integer "role"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  add_foreign_key "bookshelf_books", "books"
+  add_foreign_key "bookshelf_books", "bookshelves"
+  add_foreign_key "bookshelves", "users"
 end
