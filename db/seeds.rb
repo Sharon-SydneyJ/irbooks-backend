@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 puts "Clearing old data..."
+
 User.destroy_all
 Bookshelf.destroy_all
 Book.destroy_all
