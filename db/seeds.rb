@@ -27,7 +27,6 @@ BookshelfBook.destroy_all
         {first_name: 'Yvonne', last_name: 'Gist', user_name: 'Vonnie', email: 'vonie@emailexample.com'}
         )
 
-
     bookshelf1 = Bookshelf.create!(
     {name: 'The Indigo Room Bookshelf', description: 'Here you can find a list of books we have either read or reccommended on the show.', user_id: user1.id }
     )
