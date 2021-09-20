@@ -5,13 +5,13 @@ class BookshelvesController < ApplicationController
     # GET /bookshelves
   def index
     bookshelves = Bookshelf.all
-    render json: bookshelves, include: :books
+    render json: bookshelves, include: :books, only: [:name, :description]
   end
 
   # GET/bookshelves/:id
   def show
     bookshelf = Bookshelf.find(params[:id])
-    render json: bookshelf, include: :books 
+    render json: bookshelf, include: :books, only: [:name, :description, :book] 
      
   end
 
@@ -25,7 +25,7 @@ class BookshelvesController < ApplicationController
   def update
     bookshelf = Bookshelf.find_by(id: params[:id])
     bookhelf.update(bookshelf_params)
-    render json: bookshelf
+    render json: bookshelf, include: :books, only: [:name, :description]
   end
 
   private
@@ -39,7 +39,7 @@ class BookshelvesController < ApplicationController
   end
       
   def bookshelf_params
-    params.permit(:name, :description)
+    params.permit(:name, :description, :book, :img_url, :title, :author, :description, :year_published, :read )
   end
 
 

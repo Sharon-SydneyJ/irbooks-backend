@@ -4,18 +4,18 @@ class BooksController < ApplicationController
     # GET /books
   def index
     books = Book.all
-    render json: books, except: [:created_at, :updated_at, :id]
+    render json: books, except: [:created_at, :updated_at]
   end
 
    # GET/books/:id
   def show
     book = Book.find(params[:id])
-    render json: book
+    render json: book, include: :bookshelves, except: [:created_at, :updated_at]
   end
   # Post/books/:id
   def create
     book = Book.create(book_params)
-    render json: book, status: :created
+    render json: book, status: :created, include: :bookshelves, except: [:created_at, :updated_at]
   end
 
   # PATCH /books/:id
@@ -43,7 +43,7 @@ class BooksController < ApplicationController
   end
       
   def book_params
-    params.permit(:img_url, :title, :author, :description, :year_published, :read)
+    params.permit(:img_url, :title, :author, :description, :year_published, :read, :book)
   end
 
 end

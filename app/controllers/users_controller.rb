@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-
+  
+  
+  
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
     
@@ -17,7 +19,7 @@ class UsersController < ApplicationController
   # Post/users/:id
   def create
     user = User.create(user_params)
-    render json: user, status: :created
+    render json: user, status: :created, include: :bookshelves
   end
 
   # PATCH /users/:id
@@ -45,7 +47,7 @@ class UsersController < ApplicationController
   end
       
   def user_params
-    params.permit(:first_name, :last_name, :user_name, :email)
+    params.permit(:first_name, :last_name, :user_name, :email, :userid, :bookshelf)
   end
 
 end
