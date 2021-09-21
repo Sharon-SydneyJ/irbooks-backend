@@ -39,7 +39,7 @@ class BookshelvesController < ApplicationController
   end
       
   def bookshelf_params
-    params.permit(:name, :description, :book, :img_url, :title, :author, :description, :year_published, :read )
+    params.permit(:name, :description, :book, :img_url, :title, :author, :description, :year_published, :read, :user_name, :first_name )
   end
 
 
